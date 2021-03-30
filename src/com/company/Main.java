@@ -20,39 +20,42 @@ import java.util.stream.Stream;
 public class Main {
 
     public static void main(String[] args) throws IOException {
-        Stream streamEmpty = Stream.empty();
-        streamEmpty.forEach(System.out::println);
 
+//        Stream streamEmpty = Stream.empty();
+//        streamEmpty.forEach(System.out::println);
+
+        //return users.stream().map(User::getEid).collect(Collectors.joining("<br>"));
+//
 //        Collection<String> strCollection = Arrays.asList("a","b","c");
 //        Stream<String> streamOfCollection = strCollection.stream();
-//        streamOfCollection.forEach(System.out::println);
+//        streamOfCollection.forEach(System.out::print);
 //        Stream<String> generatedStream = Stream.generate(() -> "element").limit(10);
 //        generatedStream.forEach(System.out::println);
 //        Stream<Integer> streamIterated = Stream.iterate(40,n-> n+2).limit(20);
 //        streamIterated.forEach(System.out::println);
 
         //Random streams
-//        Random random = new Random();
+       // Random random = new Random();
 //        DoubleStream doubleStream = random.doubles(10);
 //        doubleStream.forEach(System.out::println);
 
         //Stream of Strings
 //        IntStream streamOfChars = "abc".chars();
 //        streamOfChars.forEach(System.out::println);
-//        Stream<String> streamOfString = Pattern.compile(", ").splitAsStream("a,b,c");
+//        Stream<String> streamOfString = Pattern.compile(", ").splitAsStream("a,b,c,d,kron,single montior,single connect");
 //        streamOfString.forEach(System.out::println);
 
         //Stream of file
-        Path path = Paths.get("G:\\Development\\deneme.txt");
-        Stream<String> fileStreamAsString = Files.lines(path);
-        Stream<String> fileStreamAsCharset = Files.lines(path, StandardCharsets.UTF_8);
+//        Path path = Paths.get("C:\\Users\\gokseningozde\\Desktop\\Notlar\\Stream API Workshop\\NotTheFileWeDeserveButTheFileWeNeed.txt");
+//        Stream<String> fileStreamAsString = Files.lines(path);
+//        Stream<String> fileStreamAsCharset = Files.lines(path, StandardCharsets.UTF_8);
 
 //        fileStreamAsString.forEach(System.out::println);
 //        fileStreamAsCharset.forEach(System.out::println);
 
         //Lets find any line containing 'is'
 //        Stream<String> filteredStream = fileStreamAsString.filter(element -> element.contains("is"));
-//        List<String> anyElement = filteredStream.collect(Collectors.toList());
+//         List<String> anyElement = filteredStream.collect(Collectors.toList());
 //        anyElement.forEach(System.out::println);
 
         //Warning Java 8 streams can't be reused.
@@ -74,7 +77,7 @@ public class Main {
         //Stream pipeline
 
         //one modification
-//        Stream<String> onceModifiedStream = Stream.of("First", "Second", "Third").skip(101231);
+//        Stream<String> onceModifiedStream = Stream.of("First", "Second", "Third").skip(2);
 //        onceModifiedStream.forEach(System.out::println);
 //        System.out.println(onceModifiedStream);
 
@@ -85,7 +88,7 @@ public class Main {
 
 //        List<String> list = Arrays.asList("First", "Second", "Third");
 //        long size = list.stream().skip(1)
-//                .map(element -> element.substring(0, 3)).sorted().count();
+//                .map(element -> element.substring(0, 3)).count();
 //        System.out.println(size);
 //        Stream<String> stringStream = list.stream().skip(1)
 //                .map(element -> element.substring(0, 3)).sorted();
@@ -93,30 +96,41 @@ public class Main {
 
         // Sort an object list By a certain field
 
-        Random random  = new Random();
-        List<Person> people = new ArrayList<>();
-        for(int i = 0 ; i<10 ; i++){
-            int randInd = random.nextInt(20000);
-
-            Person person = new Person("Ali" , "Gümüş "+i , randInd);
-            people.add(person);
-        }
-
+        //Random random  = new Random();
+//        List<Person> people = new ArrayList<>();
+//        for(int i = 0 ; i<10 ; i++){
+//            int randInd = random.nextInt(20000);
+//            String tempSurname = "";
+//            if(i % 2 == 0){
+//                tempSurname = "ÇiftOğlu";
+//            }else{
+//                tempSurname = "TekOğlu";
+//            }
+//
+//            Person person = new Person("Ali" , tempSurname , randInd);
+//            people.add(person);
+//        }
+//
+//        //people.forEach(System.out::println);
+//
 //        List<Person> personSorted = people.stream()
-//                .sorted(Comparator.comparing(Person::getSalary))
+//                .sorted(Comparator.comparing(Person::getSalary).reversed())
 //                .collect(Collectors.toList());
 //
-//        personSorted.forEach(System.out::println);
+//       personSorted.forEach(System.out::println);
 
         //Lazy invocation
 
         //Intermediate operations are lazy. It will be invoked only if its necessary
 
-        List<String> strList = Arrays.asList("First", "Second", "Third");
-        Stream<String> willNotInvoked = strList.stream().filter(element -> {
-            System.out.println("Filter() invoked");
-            return element.contains("2");
-        });
+//        List<String> strList = Arrays.asList("First", "Second", "Third");
+//        Stream<String> willNotInvoked = strList.stream().filter(element -> {
+//            System.out.println("Filter() invoked");
+//            return element.contains("Sec");
+//        });
+
+        //willNotInvoked.forEach(System.out::println);
+
          // filter does ne invoked because there are no terminal operations
 
 //        List<String> strList2 = Arrays.asList("First" , "Second" ,"Third");
@@ -126,7 +140,7 @@ public class Main {
 //        }).map(element -> {
 //            System.out.println("Map() invoked");
 //            return element.toUpperCase();
-//        }).findFirst();
+//        }).findAny();
 //        willInvoke.ifPresent(System.out::println);
 
         //pipeline executes vertically. Filter invoked twice to find second and when it finds
@@ -144,18 +158,19 @@ public class Main {
 
         // Order of execution in chaining operations in the stream pipeline
 
+//        List<String> strList = Arrays.asList("First", "Second", "Third");
 //        long size = strList.stream().map(element ->{
 //            System.out.println("Map() invoked");
 //            return element.substring(0,3);
 //        } ).skip(2).count();
 //        System.out.println("Size: " + size);
-
-        // Optimized
-// long size = strList.stream().skip(2).map(element ->{
+//
+//        // Optimized
+//    long size2 = strList.stream().skip(2).map(element ->{
 //            System.out.println("Map() invoked");
 //            return element.substring(0,3);
 //        } ).count();
-//        System.out.println("Size: " + size);
+//        System.out.println("Size: " + size2);
 
 
 
@@ -169,11 +184,11 @@ public class Main {
 //        OptionalInt reduced = IntStream.range(1,4).reduce(Integer::sum); // .reduce((a,b) -> a+b)
 //        reduced.ifPresent(System.out::println);
 //        // 1, 2 , 3
-//
+////
 //        int reducedTwoParams = IntStream.range(1,4).reduce(10, Integer::sum);
 //        System.out.println("Reduced with identity = 10 -> "+ reducedTwoParams);
 //        // identity = 10 stream = 1,2,3
-//
+////
 //        int reducedThreeParams = Arrays.asList(1,2,3).parallelStream()
 //                .reduce(10 , Integer::sum, (a, b) -> {
 //                    System.out.println("Combiner was called");
@@ -198,17 +213,17 @@ public class Main {
 //        double averageDouble = people.stream().collect(Collectors.averagingInt(Person::getSalary));
 //        System.out.println("Average salary is = " + averageDouble);
 
-//        Map<Integer , List<Person>> collectorOfMapLists = people.stream()
-//                .collect(Collectors.groupingBy(Person::getSalary));
+//        Map<String , List<Person>> collectorOfMapLists = people.stream()
+//                .collect(Collectors.groupingBy(Person::getSurname));
 //        collectorOfMapLists.forEach((key, value) -> {
 //            System.out.println("Key :" + key );
 //            System.out.println("Value : " + value);
 //        });
 
         //Dividing elements of list according to some predicate
-//        Map<Boolean , List<Person>> mapPartioned = people.stream()
+//        Map<Boolean , List<Person>> mapPartitioned = people.stream()
 //                .collect(Collectors.partitioningBy(element -> element.getSalary() > 10000));
-//        mapPartioned.forEach((key, value) -> {
+//        mapPartitioned.forEach((key, value) -> {
 //            System.out.println("Key: "+ key);
 //            System.out.println("Value: "+ value);
 //        });
